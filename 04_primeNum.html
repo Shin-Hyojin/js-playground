@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>소수 출력 프로그램</title>
+    <link rel="stylesheet" href="04_primeNum.css">
+  </head>
+  <body>
+    <h1>소수 출력 프로그램</h1>
+    <p>몇 이하의 소수를 출력할까요?</p>
+    <input type="number" id="input" placeholder="2 이상의 숫자를 입력하세요.">
+    <div class="btn">
+      <button onclick="numbers.run();">확인</button>
+      <button onclick="numbers.clear();">clear</button>
+    </div>
+    <div id="result"></div>
+
+    <script>
+      numbers = {};
+      numbers.all = [];
+      numbers.prime = [];
+
+      numbers.putAll = function(max_num) {
+        for(var i = 2; i <= max_num; i++) {
+          this.all.push(i);
+        }
+      };
+
+      numbers.isPrime = function(number) {
+        for(var i = 2; i < number; i++) {
+          if(number%i === 0) {
+            return false;
+          }
+        }
+        return true;
+      };
+
+      numbers.addPrime = function() {
+        for(var i = 0; i < this.all.length; i++) {
+          var n = this.all[i];
+          if(this.isPrime(n)) {
+            this.prime.push(n);
+          }
+        }
+      };
+
+      numbers.getAllPrimes = function() {
+        var ret = "";
+        ret += "<h2>Result</h2>\n<p>1 부터 " + (this.all.length+1) + " 사이의 소수는 " + this.prime.length + "개 입니다.</p>\n";
+        for(i = 0; i < this.prime.length; i++) {
+          ret += (i+1) + "번째 소수: " + this.prime[i] + "<br>\n";
+        }
+        return ret;
+      };
+
+      numbers.run = function() {
+        var num = document.getElementById('input').value;
+        if(this.all.length != 0) {
+          alert("'clear' 버튼을 클릭한 후 다시 입력하세요.");
+        } else if(num < 2) {
+          alert("2 이상의 값을 입력하세요.");
+        } else {
+          this.putAll(num);
+          this.addPrime();
+          document.getElementById('result').innerHTML = this.getAllPrimes();
+        }
+      };
+
+      numbers.clear = function() {
+        numbers.all = [];
+        numbers.prime = [];
+        document.getElementById('result').innerHTML = '';
+        document.getElementById('input').value = '';
+      };
+    </script>
+  </body>
+</html>

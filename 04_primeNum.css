@@ -1,0 +1,10 @@
+body { position:relative; padding:50px; color:#333; letter-spacing:-0.5px;}
+body h1 { text-align:center; font-size:27px;}
+body > p { text-align:center; padding-top:30px; font-size:18px;}
+body input { position:absolute; top:205px; left:50%; transform:translateX(-50%); width:240px; padding:7px 12px; font-size:17px;}
+body .btn { position:absolute; top:270px; left:50%; transform:translateX(-50%);}
+body .btn button { display:block; height:30px; width:65px; padding:6px 0 7px; font-size:14px; line-height:100%;}
+body .btn button:last-child { margin-top:10px;}
+body #result { position:absolute; top:350px; left:50%; padding-bottom:50px; transform:translateX(-50%); text-align:center; font-size:17px; line-height:35px;}
+body #result h2 { font-size:25px; line-height:100%;}
+body #result p { line-height:100%; padding:5px 0;}
