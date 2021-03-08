@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>구구단 출력 프로그램</title>
+    <link rel="stylesheet" href="05_gugudan2.css">
+  </head>
+  <body>
+    <h1>구구단 출력 프로그램</h1>
+    <p>출력하고 싶은 단을 쉼표로 구분하여 입력하세요. 예) 2,3,4</p>
+    <input type="text" id="input">
+    <button onclick="gugudan.run();">확인</button>
+    <button onclick="gugudan.clear();">clear</button>
+    <div id="result"></div>
+
+    <script>
+      gugudan = {};
+      gugudan.input = [];
+      gugudan.result = [];
+
+      gugudan.split = function() {
+        var input = document.getElementById('input').value;
+        this.input = input.split(',');
+      };
+
+      gugudan.culc = function(i) {
+        for(var n = 1; n <= 9; n++) {
+          this.result[n-1] = (i*n);
+        }
+      };
+
+      gugudan.print = function(i) {
+        var ret = "";
+        ret += "<div><h2>"+ i + "단</h2>\n";
+        for(var n = 0; n <= 8; n++) {
+          ret += i + " x " + (n+1) + " = " + this.result[n] + "<br>\n";
+        }
+        ret += "</div>\n";
+        return ret;
+      };
+
+      gugudan.main = function() {
+        this.split();
+        for(var n = 0; n < this.input.length; n++) {
+          var i = Number(this.input[n]);
+          this.culc(i);
+          document.getElementById('result').innerHTML += this.print(i);
+        }
+      };
+
+      gugudan.run = function() {
+        if(this.input.length != 0) {
+          alert("'clear' 버튼을 클릭한 후 다시 입력하세요.");
+        } else {
+          this.main();
+        }
+      }
+
+      gugudan.clear = function() {
+        gugudan.input = [];
+        gugudan.result = [];
+        document.getElementById('input').value = '';
+        document.getElementById('result').innerHTML = '';
+      };
+
+    </script>
+  </body>
+</html>
